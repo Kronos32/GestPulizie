@@ -12,5 +12,7 @@
 			<div class=toLogin><a class=link href="loginClienteHome">Login Cliente</a></div>
 			<div class=toLogin><a class=link href="loginOperaioHome">Login Operaio</a></div>
 		</div>
+		
 	</body>
+	<jsp:include page="footer.jsp"></jsp:include>	
 </html>
