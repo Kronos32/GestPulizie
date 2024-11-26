@@ -15,15 +15,21 @@
 			<form id="cancLav" method=post action=cancellaPrenotazione>
 		<%
 			List<ComprendeDto> listLavCli=(List<ComprendeDto>)request.getAttribute("listLavCli");
-			int i,j;
+			int i;
+			Long idLavDaVer=0L, idLavCorrente=1L;
 			if(listLavCli!=null && listLavCli.size()>0)
 			{
 				for(i=0;i<listLavCli.size();i++)
 				{
+					idLavDaVer=listLavCli.get(i).getIdLavorazione();
+					if(idLavDaVer!=idLavCorrente)
+					{
 		%>
 			
 			<br><input type="checkbox" name="idLavorazione" value=<%=listLavCli.get(i).getIdLavorazione() %>><%=listLavCli.get(i).getNomeSede()%>
 		<%	
+						idLavCorrente=listLavCli.get(i).getIdLavorazione();
+					}
 				}
 		%>
 				<br><button class=submit type=submit>Elimina</button>

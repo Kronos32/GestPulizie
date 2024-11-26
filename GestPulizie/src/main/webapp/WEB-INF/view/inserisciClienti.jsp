@@ -22,7 +22,7 @@
 				<div><input type=text name=pswCliente placeholder="Password Cliente"></div>
 				<div><input class=submit type=submit value=Inserisci></div>
 			</form>
-		<p>${insCliente}</p>
+		<p class=stapaRidotta>${insCliente}</p>
 		</div>
 	</body>
 	<jsp:include page="footer.jsp"></jsp:include>

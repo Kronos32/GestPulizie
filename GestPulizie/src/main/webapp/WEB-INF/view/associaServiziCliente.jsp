@@ -43,7 +43,7 @@
 		%>
 		
 		
-		<br><button type=submit>Fine Modifiche</button>
+		<br><button class=submit type=submit>Fine Modifiche</button>
 		</form>
 		</div>
 		<script src="js/Script.js"></script>

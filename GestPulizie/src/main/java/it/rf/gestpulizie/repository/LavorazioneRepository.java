@@ -30,14 +30,12 @@ public interface LavorazioneRepository extends JpaRepository<Lavorazione, Long> 
 	
 	@Query(value = "SELECT new it.rf.gestpulizie.DTO.ComprendeDto(com.idComprende, serv.nomeServizio, "
 			+ "com.fineEsecuzioneServizio, lav.dataPrevistaEsecuzione, com.descrizioneComprende, "
-			+ "sed.nomeSede, sed.viaSede, sed.cittaSede, sed.pianoSede,lav.idLavorazione, ef.responsabileSquadra) "
+			+ "sed.nomeSede, sed.viaSede, sed.cittaSede, sed.pianoSede,lav.idLavorazione) "
 			+ "FROM Comprende com "
 			+ "JOIN com.servizioComprende serv "
 			+ "JOIN com.lavComprende lav "
 			+ "JOIN lav.elencoLavorazione es "
 			+ "JOIN es.sedeEsegue sed "
-			+ "JOIN es.sqEsegue sq "
-			+ "JOIN sq.elencoEf ef "
 			+ "JOIN sed.elencoSedeApp app "
 			+ "JOIN app.clienteApp cli "
 			+ "where cli.cfCliente = ?1", nativeQuery = false)
@@ -47,14 +45,12 @@ public interface LavorazioneRepository extends JpaRepository<Lavorazione, Long> 
 	
 	@Query(value = "SELECT new it.rf.gestpulizie.DTO.ComprendeDto(com.idComprende, serv.nomeServizio, "
 			+ "com.fineEsecuzioneServizio, lav.dataPrevistaEsecuzione, com.descrizioneComprende, "
-			+ "sed.nomeSede, sed.viaSede, sed.cittaSede, sed.pianoSede,lav.idLavorazione, ef.responsabileSquadra) "
+			+ "sed.nomeSede, sed.viaSede, sed.cittaSede, sed.pianoSede,lav.idLavorazione) "
 			+ "FROM Comprende com "
 			+ "JOIN com.servizioComprende serv "
 			+ "JOIN com.lavComprende lav "
 			+ "JOIN lav.elencoLavorazione es "
-			+ "JOIN es.sedeEsegue sed "
-			+ "JOIN es.sqEsegue sq "
-			+ "JOIN sq.elencoEf ef ", nativeQuery = false)
+			+ "JOIN es.sedeEsegue sed ", nativeQuery = false)
 	public List<ComprendeDto> selezioneTuttto();
 	
 	

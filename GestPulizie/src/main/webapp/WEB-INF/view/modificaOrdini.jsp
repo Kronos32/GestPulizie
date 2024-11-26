@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="it.rf.gestpulizie.DTO.ComprendeDto"
-	import="it.rf.gestpulizie.model.Comprende"
-	import="it.rf.gestpulizie.model.Squadra"
-	import="it.rf.gestpulizie.model.Servizio"
-    import="java.util.List"
-    import="java.sql.Date"%>
+	import="java.util.List"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,13 +20,17 @@
 			<%
 				List<ComprendeDto> listLav=(List<ComprendeDto>)request.getAttribute("listLav");
 				int i,j;
+				Long idLavDaVer=0L, idLavCorrente=1L;
 				if(listLav!=null && listLav.size()>0)
 				{
 					for(i=0;i<listLav.size();i++)
 					{
+						idLavDaVer=listLav.get(i).getIdLavorazione();
 						if(listLav.get(i).getFineEsecuzioneServizio()==false)
 					
 						{
+							if(idLavDaVer!=idLavCorrente)
+							{
 			%>
 							<tr>
 								<td><input type="radio" name="idLavorazione" value=<%=listLav.get(i).getIdLavorazione() %> required>
@@ -37,10 +38,9 @@
 								<%=listLav.get(i).getViaSede() %></td>
 								<td><%=listLav.get(i).getCittaSede()%></td>
 							</tr>
-							<tr>
-								<td><input class=submit type=submit value="Scegli Lavoro Da Modificare"></td>
-							</tr>
-			<%				
+			<%			
+								idLavCorrente=listLav.get(i).getIdLavorazione();
+							}
 						}
 					}
 			%>
@@ -56,55 +56,10 @@
 				}
 			%>
 			</table>
+				<input class=submit type=submit value="Scegli Lavoro Da Modificare">
 		</form>
 		</div>
-		<div class=mod>
-		<form id=associaServizio method=post action=>
-		<%
-			List<Servizio> servi=(List<Servizio>) request.getAttribute("servi");
-			List<Squadra> sq=(List<Squadra>) request.getAttribute("sq");
-			List<Comprende> comp=(List<Comprende>) request.getAttribute("comp");
-			Date data=(Date) request.getAttribute("dataEsecuzione");
-			Long idLav=(Long) request.getAttribute("idLavorazione");
-			String descrizione=(String) request.getAttribute("descrizione");
-			if(servi!=null && sq!=null && comp!=null && data!=null && idLav!=null && descrizione!=null)
-			{
-		%>
-				<input name=idLavorazione type=text <%=idLav %> readonly>
-				<input name=dataPrevistaEsecuzione type=date <%=data %> >
-				<input name=descrizione type=text <%=descrizione %> >
-				<select name=idSquadra>
-		<%
-				
-				for(int k=0; k<sq.size();k++)
-				{
-					if(sq.get(k).getIdSquadra()!=1 && sq.get(k).getDataOperativita().equals(data) )
-					{
-		%>
-						<option value=<%=sq.get(k).getIdSquadra() %>><%=sq.get(k).getNomeSquadra() %></option>
-		<%			
-					}
-				}
-		%>
-				</select>
-		<%
-				for(int l=0; l<servi.size();l++)
-				{
-		%>
-					<input type=checkbox name=idServizio value=<%=servi.get(l).getIdServizio()%>><%=servi.get(l).getNomeServizio() %>
-		<%			
-				}
-		%>
-				<button class=submit type=submit>Modifica Ordine</button>
-		<%
-			}
-				
-		%>
-				
-				
-		</form>
-		</div>
-		<script src="js/Script.js"></script>
+		
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>

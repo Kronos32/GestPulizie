@@ -37,6 +37,25 @@ public class ComprendeDto {
 	}
 
 	
+	public ComprendeDto(Long idComprende, String nomeServizio, Boolean fineEsecuzioneServizio,
+			Date dataPrevistaEsecuzione, String descrizioneComprende, String nomeSede, String viaSede,
+			String cittaSede, Integer pianoSede, Long idLavorazione) {
+		super();
+		this.idComprende = idComprende;
+		this.nomeServizio = nomeServizio;
+		this.fineEsecuzioneServizio = fineEsecuzioneServizio;
+		this.dataPrevistaEsecuzione = dataPrevistaEsecuzione;
+		this.descrizioneComprende = descrizioneComprende;
+		this.nomeSede = nomeSede;
+		this.viaSede = viaSede;
+		this.cittaSede = cittaSede;
+		this.pianoSede = pianoSede;
+		this.idLavorazione=idLavorazione;
+	}
+
+	
+	
+	
 
 	public Long getIdLavorazione() {
 		return idLavorazione;

@@ -575,20 +575,25 @@ public class MainController {
 			Optional<Lavorazione> lav=lS.ricercaLavorazioneId(idLavorazione);
 			List<Servizio> servi=servS.ricercaServizio();
 			List<Squadra> sq=sS.cercaSquadra();
-			List<Comprende> comp=compS.ricercaByIdLav(idLavorazione);
 
 			Date dataEse=lav.get().getDataPrevistaEsecuzione();
 			String descrizione=ese.get().getDescrizione();
-			Long idEsegue=ese.get().getIdEsegue();
 			
 			modifica.addAttribute("servi", servi);
 			modifica.addAttribute("sq",sq);
-			modifica.addAttribute("comp",comp);
 			modifica.addAttribute("dataEse",dataEse);
 			modifica.addAttribute("idLavorazione",idLavorazione);
 			modifica.addAttribute("descrizione", descrizione);
 			
-			return "modificaOrdini";
+			
+			System.out.println("---------------------------------------------------------");
+			System.out.println(dataEse);
+			System.out.println(descrizione);
+			System.out.println(idLavorazione);
+			System.out.println(sq.get(0).getNomeSquadra());
+			System.out.println(servi.get(0).getNomeServizio());
+			
+			return "modOrdini";
 		}
 		else
 		{
@@ -1625,7 +1630,7 @@ public class MainController {
 		if(cfVeriicatoCli!=null)
 		{	
 			List <ComprendeDto> listLavCli = lS.ottieniListaDtoCliente(cfVeriicatoCli);
-			mod.addAttribute("listLavCli",listLavCli);
+			mod.addAttribute("listLavCli", listLavCli);
 			return "cancellaPrenotazione";
 		}
 		else

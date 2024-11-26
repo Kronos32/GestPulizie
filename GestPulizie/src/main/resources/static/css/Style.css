@@ -142,7 +142,15 @@ h1
 	font-size: 20px;
 	padding: 0px 5px 0px 5px;
 	float:left;
+	transition: background-color 0.3s;
 }
+
+
+.gestione:hover
+{
+	background-color: blue;
+}
+
 
 
 .logoHome
